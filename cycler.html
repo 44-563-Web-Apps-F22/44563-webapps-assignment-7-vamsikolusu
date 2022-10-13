@@ -50,6 +50,7 @@
             <button class="btn btn-warning" type="submit" onclick="makeNewDiv()">Add Value</button>
             <button class="btn btn-danger" type="submit" onclick="get()">Get</button>
             <button class="btn btn-success" type="submit" onclick="spin()">Spin</button>
+            <button onclick="swap()" class="btn btn-secondary" >Swap</button>
         </div>
     </div>
     
@@ -84,6 +85,48 @@
                 container.insertBefore(removedItem, container.firstChild)
             }
         }
+        function swap(){
+      var cyclerItems=document.getElementsByClassName("cycler")
+        var length=cyclerItems.length
+        var rnd1=Math.floor(Math.random()*(length-1))
+        var rnd2=Math.floor(Math.random()*(length-1))
+        console.log(rnd1)
+        console.log(rnd2)
+
+        if(rnd1==rnd2){
+          rnd2+=1
+        }
+
+        if(length==2){
+            swapElement=document.createElement("div")
+            swapElement.innerHTML=cyclerItems[1].textContent
+            swapElement.className="cycler"
+            cyclerItems[1].remove()
+            var container=document.getElementById("target")
+            container.insertBefore(swapElement,cyclerItems[0])
+        }
+
+        else if(length>2){
+            swap1=document.createElement("div")
+            swap1.innerHTML=cyclerItems[rnd1].textContent
+            swap1.className="cycler"
+            swap1.style.color = "blue"
+
+            swap2=document.createElement("div")
+            swap2.innerHTML=cyclerItems[rnd2].textContent
+            swap2.className="cycler"
+            swap2.style.color = "blue"
+            
+
+            cyclerItems[rnd1].remove()
+            var container=document.getElementById("target")
+            container.insertBefore(swap1,cyclerItems[rnd2-1])
+
+            cyclerItems[rnd2].remove()
+            var container=document.getElementById("target")
+            container.insertBefore(swap2,cyclerItems[rnd1])
+        }
+    }
     </script>
 </body>
 </html>
