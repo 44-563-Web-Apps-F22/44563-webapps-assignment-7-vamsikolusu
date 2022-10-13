@@ -11,28 +11,97 @@
 </head>
 <body>
 
-  <h2>Timeout - Red in 3 seconds</h2>
+  <style>
+    h1 {
+       color: pink;
+       font-family: Audiowide;
+       padding: 5px;
+       margin-bottom: 10px;
+    }
+    .menu {
+        background-color: #FF884B;
+        padding: 3px;
+        text-align: center;
+        width: 500px;
+         margin-left: 300px;
+    }
+    #target {
+        background-color: aqua;
+        font-family: "Indie Flower";
+        font-weight: 800;
+        font-size: 17px;
+        margin: 6px;
+    }
+    #countdown {
+        background-color: lightgreen;
+        font-family: "Indie Flower";
+        font-weight: 800;
+        font-size: 17px;
+        margin: 5px;
+    }
+    button {
+        margin: 20px;
+    }
+</style>
 
-  <button type="button"
-  class="btn btn-primary"
-  onclick="buttonPress2()">
-  Click me change the color.</button>
-  
-  <p id="target">I will become red </p>
-  
-  <script> 
-  function buttonPress1() {
-    setTimeout(function(){
-      document.getElementById('target').style.color = "red"
-    }, 3000)
-  }
+</head>
 
-  function buttonPress2() {
-    setTimeout(()=>{
-      document.getElementById('target').style.color = "red"
-    }, 3000)
+<body>
+
+<div class="container text-center">
+<div class="container-fluid p-5 bg-secondary text-white text-center">
+    <h1> Vamsi Krishna Kolusu timer</h1>
+</div><br>
+
+<div class = "d-flex justify-content-center p-2 bg-success text-white">
+    <div class="col-md">
+        <div class="p-2 bg-primary flex-fill" id="target">Your time</div>
+    </div>
+    <div class="col-md">
+        <div class="p-2 bg-secondary flex-fill" id="countdown">Count</div>
+    </div>
+</div><br>
+<div class="container text-center">
+    <button class="btn btn-danger" type="submit" onclick="startTime()">Start Timer</button>
+    <button class="btn btn-warning" type="submit" onclick="recordReact()">React Now</button>
+</div>
+</div>
+
+<script>
+ var myTime
+function recordReact()
+{
+  myTime=Date.now()
+  console.log(myTime)
+}
+function startTime()
+{
+  for(k=0;k<4;k++)
+  {
+    display(k)
   }
-  </script>
+  setTimeout(()=>{
+    if(myTime==undefined)
+    {
+      document.getElementById("target").innerHTML="Too Slow"
+    }
+    else
+    {
+      let buttonTime=Date.now()
+      let lapse=buttonTime-myTime
+      document.getElementById("target").innerHTML="Time was "+ lapse
+    }
+  },3000
+  )
+}
+function display(i)
+{
+  setTimeout(()=>{
+    document.getElementById('countdown').innerHTML=i
+  },((3-i)*1000))
+}
+</script>
+  
 
 </body>
 </html>
